@@ -4,7 +4,16 @@ A userscript for [Torn](https://www.torn.com) that highlights Item Market listin
 
 Works in the browser with Tampermonkey / Violentmonkey and on the phone in [Torn PDA](https://github.com/Manuito83/torn-pda).
 
-![Highlighted listings on the Item Market](pics/2026-10-16_19-01.png)
+<table>
+  <tr>
+    <th>Browser (Tampermonkey)</th>
+    <th>Torn PDA</th>
+  </tr>
+  <tr valign="top">
+    <td width="68%"><img src="pics/2026-10-16_19-01.png" alt="Highlighted listings on the Item Market in the browser"></td>
+    <td width="32%"><img src="pics/torn-pda.jpg" alt="Highlighted listings on the Item Market in Torn PDA"></td>
+  </tr>
+</table>
 
 ## What it does
 
