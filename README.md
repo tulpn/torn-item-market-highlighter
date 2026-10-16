@@ -122,7 +122,7 @@ npm test
 
 ## Like the script?
 
-If this script saves you money, please **give the [forum post](https://www.torn.com/forums.php#/p=threads&f=67&t=16611888&b=0&a=0&start=0&to=28029671) an upvote or leave a comment**. It helps me a lot and keeps the script visible for other players.
+If this script saves you money, please **give the [forum post](https://www.torn.com/forums.php#/p=threads&f=67&t=16612046&b=0&a=0) an upvote or leave a comment**. It helps me a lot and keeps the script visible for other players. Bug reports go there too, since every reply bumps the thread.
 
 ## More scripts
 
