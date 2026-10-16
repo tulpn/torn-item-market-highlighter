@@ -56,6 +56,14 @@ This script is designed to stay within Torn's scripting rules. It only reads the
 
 Rules can change, and the final responsibility for what runs in your browser is yours. Read the current rules at [torn.com/rules.php](https://www.torn.com/rules.php) before installing any script.
 
+## API Terms of Service
+
+| Data Storage | Data Sharing | Purpose of Use | Key Storage & Sharing | Key Access Level |
+| ------------ | ------------ | -------------- | --------------------- | ---------------- |
+| None. The script stores nothing, not even in your userscript manager. It only adds temporary markers to the Item Market page while it is open. | Nobody. No data is sent to the script author, other players or any third-party service. | Competitive advantage: highlighting Item Market listings priced below the city shop sell price. Market prices are read from the page you are viewing, not from the API. | Not applicable. The script never asks for, stores or sends an API key. The Torn API is used only by the author's offline build step (`torn/items`, public data) to generate the embedded price table. | None required. |
+
+**Removing your data:** there is nothing to remove. Uninstalling the script removes everything.
+
 ## Configuration
 
 The colour tiers live at the top of the script in the `CONFIG` block and can be changed for personal use:
