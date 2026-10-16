@@ -39,6 +39,8 @@ A small gear button in the bottom-right corner shows how many profitable listing
 - **Hide unprofitable listings**: collapse everything that is not worth buying.
 - **Count badge**: show or hide the number on the gear button.
 
+<img src="pics/menu-preview.png" alt="Settings panel with tiers, colours and display options" width="420">
+
 Settings are saved on your device, so they survive script updates. In Torn PDA they go into the app's per-script storage, which the PDA team recommends over localStorage because it is not evicted under memory pressure. In a browser they go into localStorage.
 
 ## Install
@@ -132,6 +134,7 @@ Written by **ares313377** – [Torn profile, ID 4372940](https://www.torn.com/pr
 
 Need a script tailored to your faction, your trading routine or anything else in Torn? Custom scripts can be ordered as needed, with pricing depending on scope.
 
+- Join the **[Discord server](https://discord.gg/eBxAZF9qsJ)** for support, bug reports and script requests.
 - Read the service offering and ask questions in the **[Torn forum thread](https://www.torn.com/forums.php#/p=threads&f=67&t=16611888&b=0&a=0&start=0&to=28029671)**.
 - Or send a message in game to [ares313377 [4372940]](https://www.torn.com/profiles.php?XID=4372940).
 
