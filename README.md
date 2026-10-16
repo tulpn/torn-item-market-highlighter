@@ -134,9 +134,9 @@ Written by **ares313377** – [Torn profile, ID 4372940](https://www.torn.com/pr
 
 Need a script tailored to your faction, your trading routine or anything else in Torn? Custom scripts can be ordered as needed, with pricing depending on scope.
 
-- Join the **[Discord server](https://discord.gg/eBxAZF9qsJ)** for support, bug reports and script requests.
-- Read the service offering and ask questions in the **[Torn forum thread](https://www.torn.com/forums.php#/p=threads&f=67&t=16611888&b=0&a=0&start=0&to=28029671)**.
+- Read the service offering, ask questions and report bugs in the **[Torn forum thread](https://www.torn.com/forums.php#/p=threads&f=67&t=16611888&b=0&a=0&start=0&to=28029671)**. A reply there also bumps the thread so more players find the script.
 - Or send a message in game to [ares313377 [4372940]](https://www.torn.com/profiles.php?XID=4372940).
+- There is also a [Discord server](https://discord.gg/eBxAZF9qsJ) if you prefer chat.
 
 ## License
 
