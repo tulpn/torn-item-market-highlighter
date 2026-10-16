@@ -48,13 +48,16 @@ Settings are saved on your device, so they survive script updates. In Torn PDA t
 ### Browser (Tampermonkey / Violentmonkey)
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
-2. Open the install link: **[torn-market-shop-price-highlighter.user.js](https://raw.githubusercontent.com/tulpn/torn-item-market-highlighter/main/torn-market-shop-price-highlighter.user.js)**
+2. Install from **[Greasy Fork](https://greasyfork.org/en/scripts/600616-torn-item-market-shop-sell-price-highlighter)**. You get automatic updates that way.
 3. Confirm the install. Open the Item Market and you are done.
+
+The raw file on GitHub also works as an install link if you prefer: [torn-market-shop-price-highlighter.user.js](https://raw.githubusercontent.com/tulpn/torn-item-market-highlighter/main/torn-market-shop-price-highlighter.user.js)
 
 ### Torn PDA
 
 1. In Torn PDA go to **Settings → Userscripts → Add**.
-2. Paste the raw URL above and save.
+2. Paste this URL and save:
+   `https://update.greasyfork.org/scripts/600616/torn-item-market-shop-sell-price-highlighter.user.js`
 3. Open the Item Market inside the app.
 
 No API key is needed. The script never asks for one and never makes a network request.
