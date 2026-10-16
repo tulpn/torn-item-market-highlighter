@@ -1,5 +1,7 @@
 # Torn Item Market – Shop Sell Price Highlighter
 
+[![test](https://github.com/tulpn/torn-market-sell-check/actions/workflows/test.yml/badge.svg)](https://github.com/tulpn/torn-market-sell-check/actions/workflows/test.yml)
+
 A userscript for [Torn](https://www.torn.com) that highlights Item Market listings priced **below what a city shop pays for the item**. Buy them, sell them to Big Al's (or any other city shop), pocket the difference.
 
 Works in the browser with Tampermonkey / Violentmonkey and on the phone in [Torn PDA](https://github.com/Manuito83/torn-pda).
@@ -17,7 +19,7 @@ Works in the browser with Tampermonkey / Violentmonkey and on the phone in [Torn
 
 ## What it does
 
-Every listing on the Item Market is compared against the fixed price a city shop pays for that item. If the market price is lower, the listing gets a coloured border and a coloured dot next to the price. The colour tells you how much profit per unit you would make:
+Every listing on the Item Market is compared against the fixed price a city shop pays for that item. If the market price is lower, the listing gets a coloured border, a coloured dot and a short profit label such as `+12.5k` next to the price. The colour tells you how much profit per unit you would make:
 
 | Colour | Profit per unit |
 | ------ | --------------- |
@@ -26,7 +28,18 @@ Every listing on the Item Market is compared against the fixed price a city shop
 | Red    | 1,000 – 9,999   |
 | Blue   | 1 – 999         |
 
-Hover (or long-press) the dot to see the item name, the shop price and the exact profit.
+Hover the price to see the item name, the shop price, the exact profit, the margin in percent and, when the listing shows a quantity, the total profit for the whole listing.
+
+A small gear button in the bottom-right corner shows how many profitable listings are on the current page and opens the settings panel:
+
+- **Tiers**: change thresholds, colours and labels, add or remove tiers.
+- **Compare by**: profit per unit in dollars, or margin as a percentage of the market price. Each mode has its own set of tiers.
+- **Inline label**: show or hide the profit label next to the price.
+- **Listing total**: include profit × quantity in the label and tooltip.
+- **Hide unprofitable listings**: collapse everything that is not worth buying.
+- **Count badge**: show or hide the number on the gear button.
+
+Settings are saved on your device, so they survive script updates. In Torn PDA they go into the app's per-script storage, which the PDA team recommends over localStorage because it is not evicted under memory pressure. In a browser they go into localStorage.
 
 ## Install
 
@@ -49,6 +62,8 @@ No API key is needed. The script never asks for one and never makes a network re
 1. **Shop sell prices are static**, so they are baked straight into the script as a lookup table (item ID → shop sell price). Items that no shop will buy are left out. The table is generated once with `build-prices.ps1` from the official Torn API and committed with the script.
 2. **Listings are found by their item image.** Every listing on the Item Market carries an image whose URL contains the item ID. The script reads that ID and takes the nearest `$1,234` text as the listing price. No fragile class-name selectors, so Torn's regular UI reshuffles rarely break it.
 3. **Profit = shop price − market price.** The result is matched against the colour tiers and the listing is decorated. A `MutationObserver` re-scans as you page through listings or switch categories.
+4. **Decoration is attribute-only.** The border, dot and label are drawn with CSS from attributes on the existing elements, so the script never inserts nodes into Torn's listing markup and does not interfere with other scripts watching the page.
+5. **Settings are loaded once at start-up** from Torn PDA's `PDA_storage` when the app injects it, otherwise from localStorage, and written back only when you press Save or Reset. This follows the [Torn PDA storage recommendations](https://github.com/Manuito83/torn-pda/blob/develop/userscripts/TornPDA_Storage.md).
 
 ## Torn rules
 
@@ -60,24 +75,15 @@ Rules can change, and the final responsibility for what runs in your browser is 
 
 | Data Storage | Data Sharing | Purpose of Use | Key Storage & Sharing | Key Access Level |
 | ------------ | ------------ | -------------- | --------------------- | ---------------- |
-| None. The script stores nothing, not even in your userscript manager. It only adds temporary markers to the Item Market page while it is open. | Nobody. No data is sent to the script author, other players or any third-party service. | Competitive advantage: highlighting Item Market listings priced below the city shop sell price. Market prices are read from the page you are viewing, not from the API. | Not applicable. The script never asks for, stores or sends an API key. The Torn API is used only by the author's offline build step (`torn/items`, public data) to generate the embedded price table. | None required. |
+| Only locally. Your tier, colour and display preferences are kept in Torn PDA's per-script storage (`PDA_storage`) or, in a browser, in localStorage. Nothing about your account, inventory or trades is stored, and nothing is uploaded anywhere. | Nobody. No data is sent to the script author, other players or any third-party service. | Competitive advantage: highlighting Item Market listings priced below the city shop sell price. Market prices are read from the page you are viewing, not from the API. | Not applicable. The script never asks for, stores or sends an API key. The Torn API is used only by the author's offline build step (`torn/items`, public data) to generate the embedded price table. | None required. |
 
-**Removing your data:** there is nothing to remove. Uninstalling the script removes everything.
+**Removing your data:** press **Reset to defaults** in the settings panel, or uninstall the script and clear site data for torn.com.
 
 ## Configuration
 
-The colour tiers live at the top of the script in the `CONFIG` block and can be changed for personal use:
+Use the settings panel (gear button on the Item Market page). Nothing needs to be edited in the file. `Min` is the per-unit profit, or the margin in percent, that a listing must reach to get that tier. Listings below the lowest `Min` are not highlighted. Add, remove or reorder tiers as you like; the script sorts them itself. **Reset to defaults** wipes your saved settings.
 
-```js
-tiers: [
-  { min: 50000, color: '#2ecc71', label: 'green' },
-  { min: 10000, color: '#f1c40f', label: 'yellow' },
-  { min: 1000,  color: '#e74c3c', label: 'red' },
-  { min: 1,     color: '#3b1ee0', label: 'blue' },
-],
-```
-
-`min` is the per-unit profit a listing must reach to get that tier. Listings below the lowest `min` are not highlighted. Add, remove or reorder tiers as you like; the script sorts them itself.
+The defaults live at the top of the script in the `CONFIG` block. Saved settings always override them.
 
 ## Refreshing the price table
 
@@ -89,10 +95,28 @@ Torn very occasionally rebalances item values. To regenerate the embedded table,
 
 A key with **Public** access is enough. The script fetches `torn/items` once, rewrites the table between the `@@SHOP_PRICES_START` / `@@SHOP_PRICES_END` markers, and leaves everything else untouched. The key is only used by this build step and never ends up in the userscript.
 
+## Development and tests
+
+The script is tested against a fake Item Market page in [jsdom](https://github.com/jsdom/jsdom) using Node's built-in test runner. The tests cover tier colours, labels and tooltips, the settings panel, persistence in both storage backends, hostile data in storage, and live page mutations.
+
+```powershell
+npm install
+npm test
+```
+
+`npm test` first syntax-checks the userscript, then runs everything in `test/`. The same command runs in GitHub Actions on every push and pull request.
+
+### Security notes
+
+- The settings panel is built with DOM calls only. There is no `innerHTML`, so a stored label can never become markup.
+- Everything read from storage is treated as untrusted and normalised field by field: colours must be six-digit hex, thresholds must be finite and non-negative, labels are capped at 12 characters, unknown keys are dropped. This matters because localStorage on torn.com is shared with every other script you run.
+- The script makes no network requests, uses no `GM_*` functions, and runs with `@grant none`.
+
 ## Known limitations
 
 - Torn's Item Market is a React app with hashed class names. The script locates listings heuristically (image + nearest price), which is robust but not infallible. If a listing shows more than one dollar amount, the first one wins.
 - Only the shop sell price is considered. Your own sell-related perks or events that temporarily change shop prices are not factored in.
+- The listing quantity is read from the row text with a simple pattern (`x12`, `12x`, `qty 12`). If Torn shows it differently, the total is left out and only the per-unit profit is shown.
 
 ## Like the script?
 

@@ -30,7 +30,7 @@ $pattern = '(?s)(// @@SHOP_PRICES_START\r?\n).*?(\r?\n\s*// @@SHOP_PRICES_END)'
 if ($src -notmatch $pattern) { throw "Markers not found in $ScriptPath" }
 
 $stamp = Get-Date -Format 'yyyy-MM-dd'
-$block = "  // generated $stamp - $($pairs.Count) items`n  const SHOP_SELL_PRICES = $json;"
+$block = "  // generated $stamp - $($pairs.Count) items`n  const SHOP_PRICES_GENERATED = '$stamp';`n  const SHOP_SELL_PRICES = $json;"
 $out = [regex]::Replace($src, $pattern, { param($m) $m.Groups[1].Value + $block + $m.Groups[2].Value })
 
 Set-Content -Path $ScriptPath -Value $out -NoNewline -Encoding utf8

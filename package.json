@@ -1,0 +1,13 @@
+{
+  "name": "torn-market-sell-check",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Tests for the Torn Item Market shop sell price highlighter userscript",
+  "scripts": {
+    "check": "node --check torn-market-shop-price-highlighter.user.js",
+    "test": "npm run check && node --test \"test/**/*.test.js\""
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1"
+  }
+}
