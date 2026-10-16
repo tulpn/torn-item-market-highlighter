@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Torn Item Market - Shop Sell Price Highlighter
-// @namespace    https://github.com/tulpn/torn-market-sell-check
+// @namespace    https://github.com/tulpn/torn-item-market-highlighter
 // @version      0.5.0
 // @description  Highlights Item Market listings whose price is below what a city shop (Big Al's etc.) pays for the item.
 // @author       ares313377
 // @homepageURL  https://www.torn-tracker.com/scripts
-// @license      Torn Scripts No-Modification License - https://github.com/tulpn/torn-market-sell-check/blob/main/LICENSE
+// @license      Torn Scripts No-Modification License - https://github.com/tulpn/torn-item-market-highlighter/blob/main/LICENSE
 // @match        https://www.torn.com/page.php?sid=ItemMarket*
 // @run-at       document-idle
 // @grant        none

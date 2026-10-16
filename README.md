@@ -1,6 +1,6 @@
 # Torn Item Market – Shop Sell Price Highlighter
 
-[![test](https://github.com/tulpn/torn-market-sell-check/actions/workflows/test.yml/badge.svg)](https://github.com/tulpn/torn-market-sell-check/actions/workflows/test.yml)
+[![test](https://github.com/tulpn/torn-item-market-highlighter/actions/workflows/test.yml/badge.svg)](https://github.com/tulpn/torn-item-market-highlighter/actions/workflows/test.yml)
 
 A userscript for [Torn](https://www.torn.com) that highlights Item Market listings priced **below what a city shop pays for the item**. Buy them, sell them to Big Al's (or any other city shop), pocket the difference.
 
@@ -48,7 +48,7 @@ Settings are saved on your device, so they survive script updates. In Torn PDA t
 ### Browser (Tampermonkey / Violentmonkey)
 
 1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
-2. Open the install link: **[torn-market-shop-price-highlighter.user.js](https://raw.githubusercontent.com/tulpn/torn-market-sell-check/main/torn-market-shop-price-highlighter.user.js)**
+2. Open the install link: **[torn-market-shop-price-highlighter.user.js](https://raw.githubusercontent.com/tulpn/torn-item-market-highlighter/main/torn-market-shop-price-highlighter.user.js)**
 3. Confirm the install. Open the Item Market and you are done.
 
 ### Torn PDA
